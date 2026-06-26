@@ -1,0 +1,74 @@
+classDiagram
+    %% PawPal+ FINAL design — matches pawpal_system.py as shipped.
+
+    class Owner {
+        +str name
+        +str contact
+        +list~Pet~ pets
+        +add_pet(pet) Pet
+        +get_pet(name) Pet
+        +list_pets() list~Pet~
+        +get_all_tasks() list~Task~
+        +to_dict() dict
+        +from_dict(data)$ Owner
+    }
+
+    class Pet {
+        +str name
+        +str species
+        +int age
+        +str notes
+        +list~Task~ tasks
+        +add_task(task) Task
+        +list_tasks() list~Task~
+        +get_task(task_id) Task
+        +remove_task(task_id) Task
+        +to_dict() dict
+        +from_dict(data)$ Pet
+    }
+
+    class Task {
+        +str task_id
+        +str description
+        +datetime due_at
+        +int duration_minutes
+        +str priority
+        +str frequency
+        +bool completed
+        +mark_complete()
+        +create_next_occurrence() Task
+        +end_time() datetime
+        +to_dict() dict
+        +from_dict(data)$ Task
+    }
+
+    class Scheduler {
+        +Owner owner
+        +get_all_tasks() list~ScheduleEntry~
+        +sort_by_due_time() list~ScheduleEntry~
+        +filter_tasks(pet_name, completed, priority, on_date) list~ScheduleEntry~
+        +detect_conflicts() list~Conflict~
+        +complete_task(task_id) Task
+        +sort_by_priority_and_time() list~ScheduleEntry~
+        +find_next_available_slot(duration_minutes, search_start, search_end, increment_minutes) datetime
+    }
+
+    class ScheduleEntry {
+        +Pet pet
+        +Task task
+    }
+
+    class Conflict {
+        +ScheduleEntry first
+        +ScheduleEntry second
+        +datetime overlap_start
+        +datetime overlap_end
+    }
+
+    Owner "1" o-- "*" Pet : owns
+    Pet "1" o-- "*" Task : has
+    Scheduler "1" --> "1" Owner : schedules for
+    Scheduler ..> ScheduleEntry : produces
+    Scheduler ..> Conflict : reports
+    ScheduleEntry --> Pet
+    ScheduleEntry --> Task
