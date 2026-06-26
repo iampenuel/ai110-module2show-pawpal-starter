@@ -1,0 +1,53 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.1, pytest-9.1.1, pluggy-1.6.0 -- /Users/admin/Documents/codepath-ai110/project-2/pawpal-plus/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/admin/Documents/codepath-ai110/project-2/pawpal-plus
+plugins: anyio-4.14.1
+collecting ... collected 44 items
+
+tests/test_pawpal.py::test_task_creation_sets_fields PASSED              [  2%]
+tests/test_pawpal.py::test_task_end_time PASSED                          [  4%]
+tests/test_pawpal.py::test_task_completion_changes_status PASSED         [  6%]
+tests/test_pawpal.py::test_pet_add_task_grows_collection PASSED          [  9%]
+tests/test_pawpal.py::test_pet_get_and_remove_task PASSED                [ 11%]
+tests/test_pawpal.py::test_pet_get_missing_task_raises_keyerror PASSED   [ 13%]
+tests/test_pawpal.py::test_owner_add_and_get_pet PASSED                  [ 15%]
+tests/test_pawpal.py::test_owner_get_missing_pet_raises_keyerror PASSED  [ 18%]
+tests/test_pawpal.py::test_owner_get_all_tasks_across_pets PASSED        [ 20%]
+tests/test_pawpal.py::test_scheduler_collects_tasks_from_multiple_pets PASSED [ 22%]
+tests/test_pawpal.py::test_sort_by_due_time_is_chronological PASSED      [ 25%]
+tests/test_pawpal.py::test_sort_by_due_time_does_not_mutate_pets PASSED  [ 27%]
+tests/test_pawpal.py::test_filter_by_pet PASSED                          [ 29%]
+tests/test_pawpal.py::test_filter_by_completion_status PASSED            [ 31%]
+tests/test_pawpal.py::test_filter_by_priority PASSED                     [ 34%]
+tests/test_pawpal.py::test_filter_invalid_priority_raises PASSED         [ 36%]
+tests/test_pawpal.py::test_filter_combines_pet_and_priority PASSED       [ 38%]
+tests/test_pawpal.py::test_conflict_detection_exact_overlap PASSED       [ 40%]
+tests/test_pawpal.py::test_conflict_detection_partial_overlap_across_pets PASSED [ 43%]
+tests/test_pawpal.py::test_no_false_conflict_for_adjacent_tasks PASSED   [ 45%]
+tests/test_pawpal.py::test_daily_recurrence_creates_next_day PASSED      [ 47%]
+tests/test_pawpal.py::test_weekly_recurrence_creates_seven_days_later PASSED [ 50%]
+tests/test_pawpal.py::test_once_task_does_not_recur PASSED               [ 52%]
+tests/test_pawpal.py::test_complete_task_spawns_recurrence_on_same_pet PASSED [ 54%]
+tests/test_pawpal.py::test_completing_twice_does_not_duplicate_recurrence PASSED [ 56%]
+tests/test_pawpal.py::test_complete_unknown_task_raises_keyerror PASSED  [ 59%]
+tests/test_pawpal.py::test_priority_first_sorting_across_pets PASSED     [ 61%]
+tests/test_pawpal.py::test_priority_sort_breaks_ties_by_time PASSED      [ 63%]
+tests/test_pawpal.py::test_find_next_available_slot_in_open_window PASSED [ 65%]
+tests/test_pawpal.py::test_find_next_available_slot_skips_occupied_windows PASSED [ 68%]
+tests/test_pawpal.py::test_find_next_available_slot_returns_none_when_full PASSED [ 70%]
+tests/test_pawpal.py::test_completed_tasks_do_not_block_slots PASSED     [ 72%]
+tests/test_pawpal.py::test_json_round_trip_preserves_everything PASSED   [ 75%]
+tests/test_pawpal.py::test_load_missing_file_raises PASSED               [ 77%]
+tests/test_pawpal.py::test_load_malformed_json_raises PASSED             [ 79%]
+tests/test_pawpal.py::test_load_wrong_shape_raises PASSED                [ 81%]
+tests/test_pawpal.py::test_invalid_priority_rejected PASSED              [ 84%]
+tests/test_pawpal.py::test_invalid_frequency_rejected PASSED             [ 86%]
+tests/test_pawpal.py::test_zero_duration_rejected PASSED                 [ 88%]
+tests/test_pawpal.py::test_negative_duration_rejected PASSED             [ 90%]
+tests/test_pawpal.py::test_empty_description_rejected PASSED             [ 93%]
+tests/test_pawpal.py::test_empty_owner_name_rejected PASSED              [ 95%]
+tests/test_pawpal.py::test_owner_with_no_pets_has_no_tasks PASSED        [ 97%]
+tests/test_pawpal.py::test_pet_with_no_tasks PASSED                      [100%]
+
+============================== 44 passed in 0.05s ==============================
