@@ -1,0 +1,92 @@
+
+================================================================
+  1. Owner & Pets
+================================================================
+👤 Owner: Jordan Rivera  (jordan@example.com)
+   🐾 Mochi — dog, 3y, 3 tasks  [High energy]
+   🐾 Biscuit — cat, 7y, 2 tasks  [Senior]
+
+================================================================
+  2. Task Addition (insertion order, per pet)
+================================================================
+
+Mochi:
+   • Evening walk @ 18:00 (high)
+   • Morning walk @ 08:00 (high)
+   • Bath @ 08:15 (low)
+
+Biscuit:
+   • Give medication @ 08:20 (high)
+   • Brush coat @ 12:00 (medium)
+
+================================================================
+  3. Chronological Sorting (across all pets)
+================================================================
+
+Sorted by due time:
+When             Dur  Priority  Freq    Pet      Task             Status
+----------------+-----+----------+--------+---------+-----------------+-------
+Wed 07-01 08:00  30m  🔴 high    daily   Mochi    Morning walk     ⬜ open
+Wed 07-01 08:15  45m  🟢 low     weekly  Mochi    Bath             ⬜ open
+Wed 07-01 08:20  10m  🔴 high    daily   Biscuit  Give medication  ⬜ open
+Wed 07-01 12:00  20m  🟡 medium  once    Biscuit  Brush coat       ⬜ open
+Wed 07-01 18:00  30m  🔴 high    daily   Mochi    Evening walk     ⬜ open
+
+================================================================
+  4. Filtering
+================================================================
+
+High-priority tasks across all pets:
+When             Dur  Priority  Freq   Pet      Task             Status
+----------------+-----+----------+-------+---------+-----------------+-------
+Wed 07-01 08:00  30m  🔴 high    daily  Mochi    Morning walk     ⬜ open
+Wed 07-01 08:20  10m  🔴 high    daily  Biscuit  Give medication  ⬜ open
+Wed 07-01 18:00  30m  🔴 high    daily  Mochi    Evening walk     ⬜ open
+
+Tasks for Biscuit only:
+When             Dur  Priority  Freq   Pet      Task             Status
+----------------+-----+----------+-------+---------+-----------------+-------
+Wed 07-01 08:20  10m  🔴 high    daily  Biscuit  Give medication  ⬜ open
+Wed 07-01 12:00  20m  🟡 medium  once   Biscuit  Brush coat       ⬜ open
+
+================================================================
+  5. Conflict Detection (duration-based overlap)
+================================================================
+   ⚠️  Mochi's 'Morning walk' overlaps Mochi's 'Bath' (2026-07-01 08:15–08:30)
+   ⚠️  Mochi's 'Morning walk' overlaps Biscuit's 'Give medication' (2026-07-01 08:20–08:30)
+   ⚠️  Mochi's 'Bath' overlaps Biscuit's 'Give medication' (2026-07-01 08:20–08:30)
+
+================================================================
+  6. Priority-First Scheduling
+================================================================
+
+Sorted by priority (high→low), then time:
+When             Dur  Priority  Freq    Pet      Task             Status
+----------------+-----+----------+--------+---------+-----------------+-------
+Wed 07-01 08:00  30m  🔴 high    daily   Mochi    Morning walk     ⬜ open
+Wed 07-01 08:20  10m  🔴 high    daily   Biscuit  Give medication  ⬜ open
+Wed 07-01 18:00  30m  🔴 high    daily   Mochi    Evening walk     ⬜ open
+Wed 07-01 12:00  20m  🟡 medium  once    Biscuit  Brush coat       ⬜ open
+Wed 07-01 08:15  45m  🟢 low     weekly  Mochi    Bath             ⬜ open
+
+================================================================
+  7. Recurring-Task Completion
+================================================================
+Completing Mochi's daily task: 'Morning walk' (07-01 08:00)
+   ↪ next occurrence created: 'Morning walk' on Thu 07-02 08:00 (completed=False)
+Calling complete_task again on the same id (idempotency check):
+   ↪ returned None — no duplicate recurrence created.
+
+================================================================
+  8. Next Available Slot
+================================================================
+   📅 Earliest free 60-minute slot between 08:00 and 20:00: Wed 07-01 09:00
+
+================================================================
+  9. JSON Save / Load Round-Trip
+================================================================
+   💾 Saved owner to temporary file: /var/folders/4t/_g4p22z54bd1jfjf6b716rwm0000gn/T/pawpal_demo_mn_0l8et/owner.json
+   📂 Reloaded owner: Jordan Rivera with 2 pets and 6 tasks.
+   ✅ Round-trip preserved owner, pets and tasks.
+
+PawPal+ demo complete. 🐾
